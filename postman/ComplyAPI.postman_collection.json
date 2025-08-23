@@ -1,0 +1,44 @@
+{
+  "info": {
+    "name": "Comply API",
+    "_postman_id": "cpl-ce4ce34e750e071ee764ea5903818707",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Scan",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/scans",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "scans"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"text_policy\",\n  \"rule_pack\": \"gdpr.v1\",\n  \"inputs\": {\n    \"text\": \"Hello\"\n  }\n}"
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/v1"
+    },
+    {
+      "key": "apiKey",
+      "value": "dev_key_123"
+    }
+  ]
+}

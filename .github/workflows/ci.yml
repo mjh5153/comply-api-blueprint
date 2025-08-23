@@ -1,0 +1,17 @@
+name: CI
+on: { push: { branches: [ main ] }, pull_request: { branches: [ main ] } }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t comply/fastapi:ci ./fastapi_app
+      - run: docker build -t comply/express:ci ./express_app
+      - run: |
+          docker run -d -p 8000:8000 --name fastapi -e API_KEY=dev_key_123 comply/fastapi:ci
+          sleep 3
+          curl -sSf http://localhost:8000/ >/dev/null
+      - run: |
+          docker run -d -p 3000:3000 --name express -e API_KEY=dev_key_123 comply/express:ci
+          sleep 3
+          curl -sSf http://localhost:3000/ >/dev/null

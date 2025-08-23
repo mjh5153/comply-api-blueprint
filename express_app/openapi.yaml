@@ -1,0 +1,37 @@
+openapi: 3.0.3
+info:
+  title: Comply API
+  version: "1.0.0"
+servers:
+  - url: http://localhost:8000/v1
+  - url: http://localhost:3000/v1
+paths:
+  /scans:
+    post:
+      summary: Create a scan
+      security: [{ ApiKeyAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: string }
+                rule_pack: { type: string }
+                inputs: { type: object }
+      responses:
+        "202":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  scan_id: { type: string }
+                  status: { type: string }
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
