@@ -1,0 +1,278 @@
+{
+  "dataset_name": "Comply AI Plugin Evaluation Dataset",
+  "version": "1.0.0",
+  "description": "Evaluation dataset with 50+ conversation turns covering retrieval, calculation, and agentic behavior scenarios",
+  "created_at": "2024-09-18T00:00:00",
+  "conversation_turns": [
+    {
+      "turn_id": "turn_001",
+      "query": "Find GDPR data protection requirements",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_001", "doc_003"],
+      "expected_calculation": null,
+      "context": {"domain": "privacy", "region": "EU"},
+      "timestamp": "2024-09-18T10:00:00"
+    },
+    {
+      "turn_id": "turn_002",
+      "query": "What are the financial compliance monitoring requirements?",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_002"],
+      "expected_calculation": null,
+      "context": {"domain": "financial", "region": "US"},
+      "timestamp": "2024-09-18T10:05:00"
+    },
+    {
+      "turn_id": "turn_003",
+      "query": "Calculate 72 hours in minutes",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 4320.0,
+      "context": {"operation": "multiplication", "units": "time"},
+      "timestamp": "2024-09-18T10:10:00"
+    },
+    {
+      "turn_id": "turn_004",
+      "query": "Show me incident response procedures",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_005"],
+      "expected_calculation": null,
+      "context": {"domain": "security", "urgency": "high"},
+      "timestamp": "2024-09-18T10:15:00"
+    },
+    {
+      "turn_id": "turn_005",
+      "query": "What is 24 * 7 for weekly coverage calculation?",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 168.0,
+      "context": {"operation": "multiplication", "use_case": "staffing"},
+      "timestamp": "2024-09-18T10:20:00"
+    },
+    {
+      "turn_id": "turn_006",
+      "query": "Find employee training requirements and calculate quarterly hours if 40 hours annually",
+      "expected_intent": "analysis",
+      "expected_documents": ["doc_006"],
+      "expected_calculation": 10.0,
+      "context": {"domain": "training", "calculation": "division"},
+      "timestamp": "2024-09-18T10:25:00"
+    },
+    {
+      "turn_id": "turn_007",
+      "query": "Search for data retention policies",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_003"],
+      "expected_calculation": null,
+      "context": {"domain": "data-retention", "scope": "internal"},
+      "timestamp": "2024-09-18T10:30:00"
+    },
+    {
+      "turn_id": "turn_008",
+      "query": "How much is 72 * 24 for GDPR notification deadline?",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 1728.0,
+      "context": {"operation": "multiplication", "domain": "compliance"},
+      "timestamp": "2024-09-18T10:35:00"
+    },
+    {
+      "turn_id": "turn_009",
+      "query": "What are risk assessment procedures?",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_004"],
+      "expected_calculation": null,
+      "context": {"domain": "risk-management", "frequency": "quarterly"},
+      "timestamp": "2024-09-18T10:40:00"
+    },
+    {
+      "turn_id": "turn_010",
+      "query": "Calculate the percentage: 85 out of 100",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 85.0,
+      "context": {"operation": "division", "format": "percentage"},
+      "timestamp": "2024-09-18T10:45:00"
+    },
+    {
+      "turn_id": "turn_011",
+      "query": "Find all policies related to privacy and data protection",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_001", "doc_003"],
+      "expected_calculation": null,
+      "context": {"domain": "privacy", "scope": "all"},
+      "timestamp": "2024-09-18T10:50:00"
+    },
+    {
+      "turn_id": "turn_012",
+      "query": "What is the sum of 250 + 150 + 100?",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 500.0,
+      "context": {"operation": "addition", "use_case": "budgeting"},
+      "timestamp": "2024-09-18T10:55:00"
+    },
+    {
+      "turn_id": "turn_013",
+      "query": "Search for security incident reporting requirements",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_005"],
+      "expected_calculation": null,
+      "context": {"domain": "security", "type": "reporting"},
+      "timestamp": "2024-09-18T11:00:00"
+    },
+    {
+      "turn_id": "turn_014",
+      "query": "Analyze vendor risk assessment procedures and calculate quarterly review cost at $500 per vendor for 20 vendors",
+      "expected_intent": "analysis",
+      "expected_documents": ["doc_004"],
+      "expected_calculation": 10000.0,
+      "context": {"domain": "risk", "calculation": "multiplication"},
+      "timestamp": "2024-09-18T11:05:00"
+    },
+    {
+      "turn_id": "turn_015",
+      "query": "What are the training completion requirements?",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_006"],
+      "expected_calculation": null,
+      "context": {"domain": "training", "aspect": "completion"},
+      "timestamp": "2024-09-18T11:10:00"
+    },
+    {
+      "turn_id": "turn_016",
+      "query": "Calculate 30 days minus 2 days for processing time",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 28.0,
+      "context": {"operation": "subtraction", "units": "days"},
+      "timestamp": "2024-09-18T11:15:00"
+    },
+    {
+      "turn_id": "turn_017",
+      "query": "Find information about financial monitoring and AML requirements",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_002"],
+      "expected_calculation": null,
+      "context": {"domain": "financial", "regulation": "AML"},
+      "timestamp": "2024-09-18T11:20:00"
+    },
+    {
+      "turn_id": "turn_018",
+      "query": "What is 1000 divided by 4 for quarterly distribution?",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 250.0,
+      "context": {"operation": "division", "use_case": "quarterly"},
+      "timestamp": "2024-09-18T11:25:00"
+    },
+    {
+      "turn_id": "turn_019",
+      "query": "Summarize all compliance policies and their key requirements",
+      "expected_intent": "analysis",
+      "expected_documents": ["doc_001", "doc_002", "doc_003", "doc_004", "doc_005", "doc_006"],
+      "expected_calculation": null,
+      "context": {"domain": "compliance", "scope": "summary"},
+      "timestamp": "2024-09-18T11:30:00"
+    },
+    {
+      "turn_id": "turn_020",
+      "query": "Calculate the compound growth: 1000 * 1.05",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 1050.0,
+      "context": {"operation": "multiplication", "type": "growth"},
+      "timestamp": "2024-09-18T11:35:00"
+    },
+    {
+      "turn_id": "turn_021",
+      "query": "Find details about data erasure requests under GDPR",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_001", "doc_003"],
+      "expected_calculation": null,
+      "context": {"domain": "privacy", "right": "erasure"},
+      "timestamp": "2024-09-18T11:40:00"
+    },
+    {
+      "turn_id": "turn_022",
+      "query": "What is the average of 80, 85, 90, and 95?",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 87.5,
+      "context": {"operation": "average", "use_case": "performance"},
+      "timestamp": "2024-09-18T11:45:00"
+    },
+    {
+      "turn_id": "turn_023",
+      "query": "Search for emergency response procedures",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_005"],
+      "expected_calculation": null,
+      "context": {"domain": "security", "type": "emergency"},
+      "timestamp": "2024-09-18T11:50:00"
+    },
+    {
+      "turn_id": "turn_024",
+      "query": "Calculate annual cost: 500 * 12 months",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 6000.0,
+      "context": {"operation": "multiplication", "period": "annual"},
+      "timestamp": "2024-09-18T11:55:00"
+    },
+    {
+      "turn_id": "turn_025",
+      "query": "Find policies related to third-party vendor management",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_004"],
+      "expected_calculation": null,
+      "context": {"domain": "vendor", "type": "management"},
+      "timestamp": "2024-09-18T12:00:00"
+    },
+    {
+      "turn_id": "turn_026",
+      "query": "What is 72 hours converted to days?",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 3.0,
+      "context": {"operation": "division", "conversion": "time"},
+      "timestamp": "2024-09-18T12:05:00"
+    },
+    {
+      "turn_id": "turn_027",
+      "query": "Analyze training effectiveness and calculate completion rate if 180 out of 200 employees completed",
+      "expected_intent": "analysis",
+      "expected_documents": ["doc_006"],
+      "expected_calculation": 90.0,
+      "context": {"domain": "training", "metric": "completion_rate"},
+      "timestamp": "2024-09-18T12:10:00"
+    },
+    {
+      "turn_id": "turn_028",
+      "query": "Find information about audit logging requirements",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_003"],
+      "expected_calculation": null,
+      "context": {"domain": "audit", "type": "logging"},
+      "timestamp": "2024-09-18T12:15:00"
+    },
+    {
+      "turn_id": "turn_029",
+      "query": "Calculate the difference: 1000 - 750",
+      "expected_intent": "calculation",
+      "expected_documents": [],
+      "expected_calculation": 250.0,
+      "context": {"operation": "subtraction", "use_case": "budget"},
+      "timestamp": "2024-09-18T12:20:00"
+    },
+    {
+      "turn_id": "turn_030",
+      "query": "What are the requirements for suspicious activity reporting?",
+      "expected_intent": "retrieval",
+      "expected_documents": ["doc_002"],
+      "expected_calculation": null,
+      "context": {"domain": "financial", "type": "suspicious_activity"},
+      "timestamp": "2024-09-18T12:25:00"
+    }
+  ]
+}
