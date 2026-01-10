@@ -1,0 +1,127 @@
+"Monitor Ctrl-Break" #22 [37379] daemon prio=5 os_prio=31 cpu=66.30ms elapsed=23.62s tid=0x00007fc21f814200 nid=37379 runnable  [0x000070000ac3d000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.SocketDispatcher.read0(java.base@25/Native Method)
+	at sun.nio.ch.SocketDispatcher.read(java.base@25/SocketDispatcher.java:48)
+	at sun.nio.ch.NioSocketImpl.tryRead(java.base@25/NioSocketImpl.java:255)
+	at sun.nio.ch.NioSocketImpl.implRead(java.base@25/NioSocketImpl.java:305)
+	at sun.nio.ch.NioSocketImpl.read(java.base@25/NioSocketImpl.java:354)
+	at sun.nio.ch.NioSocketImpl$1.read(java.base@25/NioSocketImpl.java:798)
+	at java.net.Socket$SocketInputStream.implRead(java.base@25/Socket.java:974)
+	at java.net.Socket$SocketInputStream.read(java.base@25/Socket.java:964)
+	at sun.nio.cs.StreamDecoder.readBytes(java.base@25/StreamDecoder.java:279)
+	at sun.nio.cs.StreamDecoder.implRead(java.base@25/StreamDecoder.java:322)
+	at sun.nio.cs.StreamDecoder.read(java.base@25/StreamDecoder.java:186)
+	- locked <0x00000007878ac278> (a java.io.InputStreamReader)
+	at java.io.InputStreamReader.read(java.base@25/InputStreamReader.java:183)
+	at java.io.BufferedReader.fill(java.base@25/BufferedReader.java:166)
+	at java.io.BufferedReader.readLine(java.base@25/BufferedReader.java:333)
+	- locked <0x00000007878ac278> (a java.io.InputStreamReader)
+	at java.io.BufferedReader.readLine(java.base@25/BufferedReader.java:400)
+	at com.intellij.rt.execution.application.AppMainV2$1.run(AppMainV2.java:31)
+
+
+"main" #3 [6403] prio=5 os_prio=31 cpu=325.06ms elapsed=24.32s tid=0x00007fc21f00be00 nid=6403 runnable  [0x0000700009b07000]
+   java.lang.Thread.State: RUNNABLE
+	at java.io.FileInputStream.readBytes(java.base@25/Native Method)
+	at java.io.FileInputStream.read(java.base@25/FileInputStream.java:281)
+	at java.lang.System$In.read(java.base@25/System.java:1871)
+	at java.io.BufferedInputStream.read1(java.base@25/BufferedInputStream.java:328)
+	at java.io.BufferedInputStream.read(java.base@25/BufferedInputStream.java:388)
+	- locked <0x0000000787f06a10> (a java.io.BufferedInputStream)
+	at sun.nio.cs.StreamDecoder.readBytes(java.base@25/StreamDecoder.java:279)
+	at sun.nio.cs.StreamDecoder.implRead(java.base@25/StreamDecoder.java:322)
+	at sun.nio.cs.StreamDecoder.read(java.base@25/StreamDecoder.java:186)
+	- locked <0x0000000787851ce8> (a java.io.InputStreamReader)
+	at java.io.Reader.read(java.base@25/Reader.java:319)
+	at java.io.InputStreamReader.read(java.base@25/InputStreamReader.java:163)
+	at java.util.Scanner.readInput(java.base@25/Scanner.java:920)
+	at java.util.Scanner.findWithinHorizon(java.base@25/Scanner.java:1835)
+	at java.util.Scanner.nextLine(java.base@25/Scanner.java:1688)
+	at com.init_spring_bean_mvn.demo.networking.SimpleClient.main(SimpleClient.java:24)
+
+
+"Reference Handler" #13 [24067] daemon prio=10 os_prio=31 cpu=0.36ms elapsed=24.20s tid=0x00007fc21f040800 nid=24067 waiting on condition  [0x000070000a425000]
+   java.lang.Thread.State: RUNNABLE
+	at java.lang.ref.Reference.waitForReferencePendingList(java.base@25/Native Method)
+	at java.lang.ref.Reference.processPendingReferences(java.base@25/Reference.java:246)
+	at java.lang.ref.Reference$ReferenceHandler.run(java.base@25/Reference.java:208)
+
+
+"Finalizer" #14 [39939] daemon prio=8 os_prio=31 cpu=0.17ms elapsed=24.20s tid=0x00007fc21f04c600 nid=39939 in Object.wait()  [0x000070000a528000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait0(java.base@25/Native Method)
+	- waiting on <0x0000000787f02368> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.Object.wait(java.base@25/Object.java:389)
+	at java.lang.Object.wait(java.base@25/Object.java:351)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@25/ReferenceQueue.java:137)
+	at java.lang.ref.ReferenceQueue.remove(java.base@25/ReferenceQueue.java:215)
+	- locked <0x0000000787f02368> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.Finalizer$FinalizerThread.run(java.base@25/Finalizer.java:165)
+
+
+"Common-Cleaner" #21 [37635] daemon prio=8 os_prio=31 cpu=0.19ms elapsed=24.02s tid=0x00007fc21e896400 nid=37635 in Object.wait()  [0x000070000ab3a000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait0(java.base@25/Native Method)
+	- waiting on <0x0000000787d290b0> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.Object.wait(java.base@25/Object.java:389)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@25/ReferenceQueue.java:123)
+	at java.lang.ref.ReferenceQueue.remove(java.base@25/ReferenceQueue.java:201)
+	- locked <0x0000000787d290b0> (a java.lang.ref.ReferenceQueue$Lock)
+	at jdk.internal.ref.CleanerImpl.run(java.base@25/CleanerImpl.java:146)
+	at java.lang.Thread.runWith(java.base@25/Thread.java:1487)
+	at java.lang.Thread.run(java.base@25/Thread.java:1474)
+	at jdk.internal.misc.InnocuousThread.run(java.base@25/InnocuousThread.java:148)
+
+
+"Signal Dispatcher" #15 [39427] daemon prio=9 os_prio=31 cpu=0.44ms elapsed=24.20s tid=0x00007fc21f81ba00 nid=39427 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+
+"Service Thread" #16 [39171] daemon prio=9 os_prio=31 cpu=0.72ms elapsed=24.20s tid=0x00007fc21e84d200 nid=39171 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+
+"Monitor Deflation Thread" #17 [24835] daemon prio=9 os_prio=31 cpu=2.10ms elapsed=24.19s tid=0x00007fc21f04ce00 nid=24835 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+
+"C2 CompilerThread0" #18 [38403] daemon prio=9 os_prio=31 cpu=153.72ms elapsed=24.19s tid=0x00007fc21f04d600 nid=38403 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+
+"C1 CompilerThread0" #20 [37891] daemon prio=9 os_prio=31 cpu=180.38ms elapsed=24.18s tid=0x00007fc21f044c00 nid=37891 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+
+"Notification Thread" #23 [36867] daemon prio=9 os_prio=31 cpu=0.08ms elapsed=23.62s tid=0x00007fc21e89fc00 nid=36867 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+
+"Attach Listener" #24 [40719] daemon prio=9 os_prio=31 cpu=1.07ms elapsed=0.12s tid=0x00007fc21f03d600 nid=40719 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+
+"VM Thread" os_prio=31 cpu=1.32ms elapsed=24.23s tid=0x00007fc21f03fa00 nid=16387 runnable  
+
+
+"VM Periodic Task Thread" os_prio=31 cpu=0.60ms elapsed=24.25s tid=0x00007fc21df2fa50 nid=14087 waiting on condition  
+
+
+"G1 Service" os_prio=31 cpu=1.04ms elapsed=24.32s tid=0x00007fc21f80a600 nid=17923 runnable  
+
+
+"G1 Refine#0" os_prio=31 cpu=0.09ms elapsed=24.32s tid=0x00007fc21e008200 nid=18435 runnable  
+
+
+"G1 Conc#0" os_prio=31 cpu=0.05ms elapsed=24.32s tid=0x00007fc21e840200 nid=18691 runnable  
+
+
+"G1 Main Marker" os_prio=31 cpu=0.09ms elapsed=24.32s tid=0x00007fc21f009000 nid=12803 runnable  
+
+
+"GC Thread#0" os_prio=31 cpu=0.06ms elapsed=24.32s tid=0x00007fc21e83fc00 nid=12291 runnable  
+JNI global refs: 14, weak refs: 0
+
+

@@ -1,0 +1,8 @@
+Directory Contents: 
+/Users/mjh5153/Downloads/demo/public
+/Users/mjh5153/Downloads/demo/public/index.txt
+/Users/mjh5153/Downloads/demo/public/assets
+/Users/mjh5153/Downloads/demo/public/assets/index.txt
+/Users/mjh5153/Downloads/demo/public/assets/icons
+/Users/mjh5153/Downloads/demo/public/assets/icons/index.txt
+Generated: 2025-12-04T12:16:49.854229
