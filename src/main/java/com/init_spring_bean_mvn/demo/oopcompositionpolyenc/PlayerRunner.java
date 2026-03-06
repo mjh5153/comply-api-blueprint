@@ -21,6 +21,13 @@ public class PlayerRunner {
 
         // No real way with manual initialization to make sure the data is valid, can set health to negative or weapon to null, etc.
 
+        // Encapsulation main benefit - make items a black box to outside code and have full control over how the data is accessed and modified, can enforce rules and validation, and prevent invalid states
+
+        /* Encapsulation best practices: */
+        // Use setter methods sparingly and only as needed
+        // use access modifiers that aren't private, only for methods that calling code needs to use
+        // Create constructors for object initialization which enforces only objects with valid data will get created
+
 
         // First loseHealth call
         System.out.println("\n--- First Attack ---");
