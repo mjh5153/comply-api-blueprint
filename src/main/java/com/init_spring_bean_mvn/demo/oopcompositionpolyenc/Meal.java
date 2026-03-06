@@ -38,11 +38,17 @@ public class Meal {
      * @param drink The drink for the meal
      * @param sideItem The side item for the meal
      */
+
+    //@Todo - Do a video demonstrating Agent ability to modify existing code inline via prompts
+    // Can make constructor take Strings for each type so that the calling code knows even less about the underlying impl
     public Meal(Burger burger, Drink drink, SideItem sideItem) {
         this._burger = burger;
         this._drink = drink;
         this._sideItem = sideItem;
     }
+
+    // can be evolved to use a container for burger, drink, side item to allow for more flexible meal compositions in the future
+
 
     /**
      * Gets the burger in this meal
