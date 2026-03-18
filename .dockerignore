@@ -1,0 +1,30 @@
+# Backend
+target/
+.mvn/
+.idea/
+*.iml
+*.iws
+*.ipr
+.settings/
+.classpath
+.project
+
+# Angular
+React-code/angular-demo/signals-demo-app/node_modules/
+React-code/angular-demo/signals-demo-app/dist/
+React-code/angular-demo/signals-demo-app/.angular/
+
+# General
+.git
+.gitignore
+*.md
+*.txt
+*.sh
+.DS_Store
+Thumbs.db
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.aac
+comply-api-blueprint.zip

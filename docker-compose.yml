@@ -1,0 +1,44 @@
+# ============================================================
+# Dev Environment - Docker Compose
+# Deploys Spring Boot backend and Angular frontend
+# ============================================================
+# Usage:
+#   docker compose up --build        # Build and start all services
+#   docker compose up -d --build     # Build and start in detached mode
+#   docker compose down              # Stop all services
+#   docker compose logs -f backend   # Follow backend logs
+#   docker compose logs -f frontend  # Follow frontend logs
+# ============================================================
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: demo-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:devdb
+      - EUREKA_CLIENT_ENABLED=false
+      - SPRING_CLOUD_DISCOVERY_ENABLED=false
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/companys || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./React-code/angular-demo/signals-demo-app
+      dockerfile: Dockerfile
+    container_name: demo-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

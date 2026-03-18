@@ -43,6 +43,7 @@ build/
 *.dat
 *.json
 *.properties
+!**/src/main/resources/*.properties
 
 ### System Files ###
 .DS_Store

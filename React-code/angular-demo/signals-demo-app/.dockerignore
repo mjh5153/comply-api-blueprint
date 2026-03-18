@@ -1,0 +1,6 @@
+# Angular signals-demo-app
+node_modules/
+dist/
+.angular/
+.git
+*.md
