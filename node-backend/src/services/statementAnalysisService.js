@@ -114,7 +114,6 @@ export async function analyzeStatementBatch(statements, options = {}) {
   const { concurrent = 3 } = options;
   const batchId = generateAnalysisId();
   const batchStartTime = Date.now();
-  logger.info(`[${batchId}] Starting batch analysis of ${statements.length} statements (concurrency: ${concurrent})`);
   if (!Array.isArray(statements)) {
     logger.error(`[${batchId}] Invalid input: expected array of statements`);
     return [{
@@ -122,6 +121,7 @@ export async function analyzeStatementBatch(statements, options = {}) {
       error: 'Input must be an array of statements'
     }];
   }
+  logger.info(`[${batchId}] Starting batch analysis of ${statements.length} statements (concurrency: ${concurrent})`);
   const results = [];
   const queue = [...statements];
   const processing = [];
