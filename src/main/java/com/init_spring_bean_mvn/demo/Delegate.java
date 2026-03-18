@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-record Scan(String scanId, String name, String type){};
+record Scan(String scanId, String name, String type){}
 
 record Purchase(String scanId, int delegateId, double price, int year, int dayOfYear){
     public LocalDate purchaseDate() {
     return LocalDate.ofYearDay(year, dayOfYear);
     }
-};
+}
 
 
 
