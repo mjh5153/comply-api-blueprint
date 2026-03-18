@@ -30,6 +30,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+		<spring-cloud.version>2024.0.0</spring-cloud.version>
 	</properties>
     <!-- spring boot starters managed by parent -->
 	<dependencies>
@@ -90,6 +91,11 @@
             <artifactId>Java-WebSocket</artifactId>
             <version>1.6.0</version>
         </dependency>
+        <!-- Add to pom.xml for Eureka -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
     </dependencies>
 
 	<build>
@@ -117,5 +123,18 @@
             </plugin>
         </plugins>
 	</build>
+
+	<!-- Dependency Management for Spring Cloud -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>

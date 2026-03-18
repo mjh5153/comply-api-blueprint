@@ -1,6 +1,7 @@
 package com.init_spring_bean_mvn.demo;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
@@ -32,6 +33,7 @@ import static org.springframework.boot.SpringApplication.*;
 // most common: webmvc, jackson-json, validation-api, tomcat
 
 @SpringBootApplication // combo of enableautoconfiguration and @ComponentScan - specifiy package for component scanning and @SpringBootConfiguration annotation
+@EnableDiscoveryClient // Enable Eureka service discovery for this application
 public class DemoApplication {
 
     interface DelegateI {

@@ -1,10 +1,12 @@
 package com.init_spring_bean_mvn.demo.arrays;
 
+import java.util.Arrays;
+
 public class ArraysIntro {
     /*Support multiple values of the same type
     * Can have arrays for any class
     * */
-
+// next arrays 126 - common pitfalls
     public static void main(String[] args) {
         System.out.println("╔════════════════════════════════════════════════════════════╗");
         System.out.println("║   SORTING INTEGERS IN DESCENDING ORDER (Highest to Lowest)  ║");
@@ -13,8 +15,9 @@ public class ArraysIntro {
         // Create sample integer arrays
         int[] unsortedArray = {42, 15, 89, 23, 56, 78, 12, 94, 31, 67};
 
+        int[] unsortedArray2 = {5, 3, 8, 1, 4, 7, 2, 6}; // For additional testing
         System.out.println("Original Array:");
-        printArray(unsortedArray);
+        printArray(unsortedArray2);
 
         // METHOD 1: Using java.util.Arrays.sort() with manual reverse
         System.out.println("\n" + "─".repeat(60));
@@ -65,7 +68,7 @@ public class ArraysIntro {
         System.out.println("Approach: Sort ascending, then reverse");
 
         // Sort in ascending order
-        java.util.Arrays.sort(array);
+        Arrays.sort(array);
         System.out.println("Step 1 - After ascending sort: ");
         printArray(array);
 
@@ -192,12 +195,11 @@ public class ArraysIntro {
         int left = 0;
         int right = array.length - 1;
 
-        while (left < right) {
-            // Swap
+
+        while(left < right) {
             int temp = array[left];
             array[left] = array[right];
             array[right] = temp;
-
             left++;
             right--;
         }
