@@ -123,6 +123,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     environment: dev
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
