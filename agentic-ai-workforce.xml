@@ -1,0 +1,63 @@
+<mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900">
+    <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="customer" value="Customer Organization&#xa;Apps | Data Lakes | Repos | SIEM | Tickets" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+            <mxGeometry x="600" y="20" width="400" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controlplane" value="CONTROL PLANE" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;" vertex="1" parent="1">
+            <mxGeometry x="100" y="150" width="1400" height="300" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="dataplane" value="DATA PLANE" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;" vertex="1" parent="1">
+            <mxGeometry x="100" y="500" width="1400" height="300" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="policy" value="Policy &amp; Governance Engine&#xa;- Control Catalog&#xa;- AI Act Rules&#xa;- Risk Scoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b45f06;" vertex="1" parent="controlplane">
+            <mxGeometry x="50" y="60" width="300" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="orchestrator" value="Agent Orchestrator&#xa;- Task Planner&#xa;- Agent Router&#xa;- Retry/Queue Manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b45f06;" vertex="1" parent="controlplane">
+            <mxGeometry x="500" y="60" width="300" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="observability" value="Observability &amp; Cost Controls&#xa;- Budget Limits&#xa;- Rate Limits&#xa;- Audit Logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b45f06;" vertex="1" parent="controlplane">
+            <mxGeometry x="950" y="60" width="300" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="connectors" value="Enterprise Connectors&#xa;- Okta&#xa;- Jira&#xa;- AWS/GCP&#xa;- GitHub&#xa;- SharePoint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a61c00;" vertex="1" parent="dataplane">
+            <mxGeometry x="50" y="60" width="300" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="agents" value="Agent Pool&#xa;Evidence Collector&#xa;Control Mapper&#xa;Gap Detector&#xa;Remediation Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a61c00;" vertex="1" parent="dataplane">
+            <mxGeometry x="500" y="60" width="300" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="store" value="Evidence &amp; State Store&#xa;- Postgres&#xa;- Object Storage&#xa;- Vector DB (Optional)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a61c00;" vertex="1" parent="dataplane">
+            <mxGeometry x="950" y="60" width="300" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" edge="1" source="customer" target="controlplane" style="endArrow=block;strokeWidth=2;">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" edge="1" source="controlplane" target="dataplane" style="endArrow=block;strokeWidth=2;">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" edge="1" source="connectors" target="agents" style="endArrow=block;">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" edge="1" source="agents" target="store" style="endArrow=block;">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" edge="1" source="orchestrator" target="agents" style="dashed=1;endArrow=block;">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+    </root>
+</mxGraphModel>
