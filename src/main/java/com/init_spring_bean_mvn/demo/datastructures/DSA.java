@@ -220,25 +220,25 @@ public class DSA {
         int[] intArray = { 20, 35, -15, 7, 55, 1, -22};
 
         for(int gap = intArray.length /2; gap>0; gap /=2) {
-            System.out.println("array first for loop -- Array Sorted gap: " + gap + " " + Arrays.toString(intArray));
+            // System.out.println("array first for loop -- Array Sorted gap: " + gap + " " + Arrays.toString(intArray));
             // comparing and shifting - basically insertion sort
             for(int i = gap; i < intArray.length; i++) {
-                System.out.println("array second for loop -- i: " + i + " gap: " + gap + " Array: " + Arrays.toString(intArray));
+                // System.out.println("array second for loop -- i: " + i + " gap: " + gap + " Array: " + Arrays.toString(intArray));
                 int newElement = intArray[i]; // new element = current value at arr[gap] because i = gap
-                System.out.println("array second for loop -- newElement " + newElement);
+                // System.out.println("array second for loop -- newElement " + newElement);
                 int j = i;
-                System.out.println("array second for loop -- j: " + j + " j - gap: " + (j-gap) + " newElement: " + newElement + " Array: " + Arrays.toString(intArray));
+                // System.out.println("array second for loop -- j: " + j + " j - gap: " + (j-gap) + " newElement: " + newElement + " Array: " + Arrays.toString(intArray));
                 while (j >= gap && intArray[j-gap] > newElement) { // Have not hit the front
                     intArray[j] = intArray[j - gap]; // shift up array right to left by gap
-                    System.out.println("while loop intArray[j - gap]: " + intArray[j - gap] + "  " + " is greater than " + newElement + " intArray[j]: " + intArray[j]);
+                    // System.out.println("while loop intArray[j - gap]: " + intArray[j - gap] + "  " + " is greater than " + newElement + " intArray[j]: " + intArray[j]);
                     j -= gap; // now compare newElement to 3 positions over, hitting from of array
-                    System.out.println("While loop decrement j -= gap " + Arrays.toString(intArray) + " j: " + j + " gap: " + gap);
+                    // System.out.println("While loop decrement j -= gap " + Arrays.toString(intArray) + " j: " + j + " gap: " + gap);
                 }
-                System.out.println("Shell Sort After while before-- intArray[j]: " + intArray[j] + " newElement: " + newElement);
+                //System.out.println("Shell Sort After while before-- intArray[j]: " + intArray[j] + " newElement: " + newElement);
 
                 intArray[j] = newElement;
 
-                System.out.println("Shell Sort After while after -- intArray[j]: " + intArray[j] + " newElement: " + newElement);
+                // System.out.println("Shell Sort After while after -- intArray[j]: " + intArray[j] + " newElement: " + newElement);
 
             }
 
@@ -247,9 +247,140 @@ public class DSA {
         System.out.println("Shell Sort-- Array Sorted " + Arrays.toString(intArray));
 
 
+        // Merge Sort
+        // divide and conquer algorithm
+        // divide array into two halves
+        //split leads to faster sorting
+        // splitting is logical, don't create new arrays
+        // use indicies to keep track of where array has been split
+        // unsorted array
+        // divide array down middle  - first: left , second :right
+        // split left and right arrasy into two arrays each
+        // keep splitting until all arrays only one element each-these arrays are sorted
+
+        // relating to insertion sort - one element array is sorted by default
+
+        // I. Merge phase
+        // 1. split into left and right arrays,
+        // split each int left and right arrays until arrays of 1 elements
+        // merge sibling left and right ( pairs ) unitl one array - sorted array
+        // call to partition left side than right side - recursive calls
+        // merge backwards, bottom up from 1 element arrays
+        //  create temporary array large enough to hold all elements
+        // compare left[i] and right[j] - if left[i] <= right[j], add left[i] to temp array and increment i - otherwise, add right[j] to temp array and increment j
+        // Overwrite original array with sorted temporary array
+
+        int[] mergeArray = { 20, 35, -15, 7, 55, 1, -22};
+
+        // Implementation of merge sort - not in place algorithm, stable, O(n log n) time complexity in worst case - efficient for large input sizes and is widely used in practice for sorting large datasets
+        mergeSort(mergeArray, 0, mergeArray.length);
 
 
+        /* Quick Sort */
+        // choose pivot element
+        // divide in half - logical
+        // left = < pivot, right = > pivot
+        // 1. Partitioning Step
+        // - left and right arrays are not necessarily sorted
+        // 2. Repeat pivot and divide in half for left and right arrays ( divide and conquer )
+        // Pro: in place - Memory not needed as in Merge Sort
+        // Pro: no data loss or overwriting - alternate between right to left and left to right - never overwrite position we handled
+        // 3. Check indexes i and j crossed each other, assign i to position 1, assign to position j ( check if i > j )
+        //  - move value
+        // 4. Repeat for left and right partition until entire array is sorted
+        //      - every single element gets to be pivot at some point and gets sorted
+        //  O(n log[base 2] n) time complexity in worst case - efficient for large
+        //  Worst case - quadradic -
+        // Unstable algorithm - elements jumping, no guarreentte of duplicate items will be preserved
+        // pivot point has time complexity implecation
 
+        int quickSortArray[] = { 20, 35, -15, 7, 55, 1, -22};
+        quickSort(quickSortArray, 0, quickSortArray.length);
+        System.out.println("Quick Sort-- Array Sorted " + Arrays.toString(quickSortArray));
+    }
+
+    private static void quickSort(int[] input, int start, int end) {
+        if (end - start < 2) {
+            return; // base case - array of 0 or 1 element is already sorted
+        }
+
+        int pivotIndex = partition(input, start, end); // returns position of element in sorted array
+        quickSort(input, start, pivotIndex); // pivot 1 greater than what we want to index we're interested in
+        quickSort(input, pivotIndex + 1, end);
+
+    }
+
+    // return index of pivot element in sorted array
+    private static int partition(int[] input, int start, int end){
+        int pivot = input[start]; // choose first element as pivot
+
+        int i = start;
+        int j = end;
+
+        while(i<j) {
+            // use j to find an element smaller than pivot - move j left until we find an element smaller than pivot
+            while(i < j && input[--j] >= pivot); // move j left until we find an element smaller than pivot - if we find an element smaller than pivot, we stop and j is now at the position of the element smaller than pivot
+            { // decrement j and result of index, would get index out of bounds
+                // empt loop body - we are just moving j left until we find an element smaller than pivot
+            }
+            if(i<j) {
+                input[i] = input[j]; // move element smaller than pivot to left side of array
+            }
+
+            while(i < j && input[++i] <= pivot); // move i right until we find an element greater than pivot - if we find an element greater than pivot, we stop and i is now at the position of the element greater than pivot
+            {
+                // empty loop body - we are just moving i right until we find an element greater than pivot
+            }
+            if(i< j) {
+                input[j] = input[i]; // move element greater than pivot to right side of array
+            }
+        }
+
+        input[j] = pivot; // move pivot element to its correct position in sorted array
+        return j; // return index of pivot element in sorted array
+    }
+
+    private static void mergeSort(int[] mergeArray, int start, int end) {
+        if (end - start < 2) {
+            return; // base case - array of 0 or 1 element is already sorted
+        }
+
+        int mid = (start + end) /2;
+
+//        int[] leftArray = Arrays.copyOfRange(arr, 0, mid);
+//        int[] rightArray = Arrays.copyOfRange(arr, mid, arr.length);
+
+        // System.out.println("Merge Sort-- leftArray: " + Arrays.toString(leftArray) + " rightArray: " + Arrays.toString(rightArray));
+        mergeSort(mergeArray, start, mid); // left array - always 1 greater than last index in array
+        mergeSort(mergeArray, mid, end); // right array
+        merge(mergeArray, start, mid, end);
+    }
+
+    public static void merge(int[] input, int start, int mid, int end) {
+        if(input[mid-1] <= input[mid]) {
+            return; // already sorted - optimization - if last element in left array is less than or equal to first element in right array, then arrays are already sorted and we can skip the merge step
+        }
+
+        int i = start;
+        int j = mid;
+        int tempIndex = 0;
+
+        int[] temp = new int[end - start];// write smaller into temp
+
+        while(i<mid && j < end) {
+            temp[tempIndex++] = input[i] <= input[j] ? input[i++] : input[j++]; // have equals to make stable and preserve ordering
+            // tempIndex - counts elements we've done
+            // have equals to make stable and preserve ordering
+            // finish left array ? drop out of loop
+            // finish right array ? drop out
+        }
+
+        // second optimization
+        // handling elements in left , copy to temp array, elements remaining in right partion don't need to do anything
+        System.arraycopy(input, i, input, start + tempIndex, mid -i); // copy remaining elements in left array to original array - if there are any - if there are no elements left in left array, this will copy 0 elements and do nothing - if there are elements left in left array, this will copy them to the correct position in the original array - if there are elements left in right array, they are already in the correct position in the original array and don't need to be copied
+        System.out.println("Array copy 1 -- leftArray:  rightArray: " + Arrays.toString(input) + " temp: " + Arrays.toString(temp) + " desPosition: " + start + tempIndex +  " length: " + (mid -i));
+        System.arraycopy(temp, 0, input, start, tempIndex); // number of elements copied into temp array
+        System.out.println("Array temp array to input -- temp: " + Arrays.toString(temp) + " start " + 0 + " dest: " + Arrays.toString(input) + " start " + start +  " length: " + tempIndex);
 
     }
 
