@@ -11,7 +11,7 @@ public class CachedData {
 
     private volatile boolean flag = false;// volatile keyword used as modifier for class variables for fields -
     // indicator that variables value may be changed by multiple threads
-    // ensures variable is always read from and written to main mem rather than thread-specific caches
+    // ensures variable is always read from and written to main memory rather than thread-specific caches
     // Provides memory consistency for variables value across threads
     // Volatile has limited usage through -
     // 1. doesn't guarantee atomicity across threads
