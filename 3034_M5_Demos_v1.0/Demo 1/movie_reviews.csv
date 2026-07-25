@@ -1,0 +1,101 @@
+review_id,customer_name,rating,review_date,movie_name,movie_review
+1,Frank Carter,3,4/30/2025,Pulp Fiction,"Pulp Fiction was okay, not the best but watchable."
+2,Scott Simmons,3,3/3/2025,The Godfather,"The Godfather was okay, not the best but watchable."
+3,Marvin Smith,3,5/15/2025,Inception,It was fine. Inception could have been better.
+4,Brittney Taylor,5,2/25/2025,Titanic,Titanic was an outstanding film with brilliant performances.
+5,Allison Smith,2,5/11/2025,The Godfather,The Godfather was a huge disappointment.
+6,Robin Gay,3,3/23/2025,The Lion King,"The Lion King was okay, not the best but watchable."
+7,Matthew Paul,3,4/5/2025,The Matrix,I found The Matrix to be average. Some good moments though.
+8,Manuel Harrison,1,4/22/2025,The Avengers,The Avengers lacked a compelling story or performance.
+9,Jeffrey Logan,2,5/7/2025,Avatar,I didn’t enjoy Avatar at all.
+10,Mr. Kirk Adams DVM,1,2/21/2025,Fight Club,I didn’t enjoy Fight Club at all.
+11,Andrew Perez,4,5/9/2025,Pulp Fiction,Pulp Fiction was a thrilling and emotional ride.
+12,Michelle Smith,5,5/14/2025,Titanic,I absolutely loved Titanic! A masterpiece!
+13,Melissa Nguyen,5,4/9/2025,Avatar,A must-watch! Avatar exceeded my expectations.
+14,David Brown,4,2/17/2025,Interstellar,I absolutely loved Interstellar! A masterpiece!
+15,Alyssa Hutchinson,2,1/23/2025,The Dark Knight,The Dark Knight lacked a compelling story or performance.
+16,Richard Snyder DVM,5,4/3/2025,Avatar,A must-watch! Avatar exceeded my expectations.
+17,Kristine Sanchez,5,4/23/2025,The Shawshank Redemption,The Shawshank Redemption delivers an unforgettable cinematic experience.
+18,Kathryn Terrell,4,2/1/2025,The Shawshank Redemption,A must-watch! The Shawshank Redemption exceeded my expectations.
+19,Nathan Chavez,4,4/3/2025,The Dark Knight,The Dark Knight was an outstanding film with brilliant performances.
+20,Mr. Derek Woodard,5,4/30/2025,The Shawshank Redemption,The Shawshank Redemption was a thrilling and emotional ride.
+21,Amy Rodriguez,4,2/24/2025,The Matrix,The Matrix was an outstanding film with brilliant performances.
+22,William Joseph,2,3/14/2025,Interstellar,Interstellar lacked a compelling story or performance.
+23,Gail Collins,5,1/2/2025,Pulp Fiction,Pulp Fiction was an outstanding film with brilliant performances.
+24,Sara Munoz,5,3/13/2025,Inception,Inception was an outstanding film with brilliant performances.
+25,Gabriel Robinson,4,2/28/2025,The Avengers,I absolutely loved The Avengers! A masterpiece!
+26,Kathleen Gray,5,2/3/2025,Inception,A must-watch! Inception exceeded my expectations.
+27,Anthony Woodard,2,3/2/2025,The Matrix,Poorly executed. The Matrix didn’t meet expectations.
+28,Dr. William Curtis,4,5/10/2025,The Godfather,The Godfather was an outstanding film with brilliant performances.
+29,Christina Gray,4,4/17/2025,The Avengers,The Avengers delivers an unforgettable cinematic experience.
+30,Rachel Ballard,5,3/19/2025,The Lord of the Rings,The Lord of the Rings delivers an unforgettable cinematic experience.
+31,Jason Morris,5,1/9/2025,The Godfather,A must-watch! The Godfather exceeded my expectations.
+32,Anthony Simmons,1,4/3/2025,Titanic,I didn’t enjoy Titanic at all.
+33,Emily Compton,5,3/11/2025,Fight Club,Fight Club delivers an unforgettable cinematic experience.
+34,Michael Cox,1,1/24/2025,The Lion King,The Lion King lacked a compelling story or performance.
+35,Nicholas Shelton,2,1/20/2025,Pulp Fiction,Pulp Fiction was a huge disappointment.
+36,Daniel Miller,5,4/7/2025,Inception,I absolutely loved Inception! A masterpiece!
+37,Sabrina Richards,1,1/7/2025,Inception,Inception was a huge disappointment.
+38,Megan Thomas,3,4/20/2025,The Avengers,"The Avengers was decent, nothing extraordinary."
+39,Kristen Adams,2,3/3/2025,Forrest Gump,Poorly executed. Forrest Gump didn’t meet expectations.
+40,Andrew Estrada,2,3/3/2025,Titanic,Titanic lacked a compelling story or performance.
+41,Sandra Martinez,2,4/6/2025,Forrest Gump,Forrest Gump lacked a compelling story or performance.
+42,Amy Benjamin,3,2/10/2025,The Avengers,The Avengers has potential but didn’t quite hit the mark.
+43,Barry Cole,3,2/12/2025,Gladiator,It was fine. Gladiator could have been better.
+44,Zachary Ibarra,3,3/19/2025,The Godfather,It was fine. The Godfather could have been better.
+45,Ana Orozco,4,3/18/2025,Interstellar,Interstellar was a thrilling and emotional ride.
+46,Michael Sutton,1,1/6/2025,The Dark Knight,Poorly executed. The Dark Knight didn’t meet expectations.
+47,Scott Patel,3,4/23/2025,Inception,"Inception was decent, nothing extraordinary."
+48,Mark Sharp,2,2/24/2025,Avatar,I didn’t enjoy Avatar at all.
+49,Tammy Boyd,2,5/1/2025,Gladiator,Poorly executed. Gladiator didn’t meet expectations.
+50,Jacqueline Anderson,2,2/25/2025,The Matrix,The Matrix was a huge disappointment.
+51,Shane Fox,4,2/9/2025,The Avengers,A must-watch! The Avengers exceeded my expectations.
+52,Kevin Curry,4,1/28/2025,The Shawshank Redemption,A must-watch! The Shawshank Redemption exceeded my expectations.
+53,Lacey Morgan,2,3/16/2025,The Godfather,The Godfather was a huge disappointment.
+54,Debbie Chung,4,1/30/2025,Forrest Gump,A must-watch! Forrest Gump exceeded my expectations.
+55,Cynthia Osborne,2,5/9/2025,Pulp Fiction,I didn’t enjoy Pulp Fiction at all.
+56,Michael Jordan,3,3/12/2025,The Avengers,I found The Avengers to be average. Some good moments though.
+57,Larry Jacobs,2,1/16/2025,Fight Club,Fight Club was a huge disappointment.
+58,Brad Morrow,2,3/11/2025,The Matrix,"Unfortunately, The Matrix was boring and slow."
+59,William Campbell,1,2/15/2025,Avatar,Poorly executed. Avatar didn’t meet expectations.
+60,Catherine Martin,5,1/14/2025,Gladiator,I absolutely loved Gladiator! A masterpiece!
+61,Gregory Bruce,5,2/11/2025,Gladiator,Gladiator delivers an unforgettable cinematic experience.
+62,Tonya Zuniga,1,4/24/2025,The Avengers,The Avengers lacked a compelling story or performance.
+63,Eric Williams,4,4/7/2025,The Shawshank Redemption,A must-watch! The Shawshank Redemption exceeded my expectations.
+64,Mr. Dalton Weaver,3,1/22/2025,The Godfather,It was fine. The Godfather could have been better.
+65,Anthony Romero,1,1/21/2025,Forrest Gump,I didn’t enjoy Forrest Gump at all.
+66,Brian Bryant,1,2/15/2025,The Lord of the Rings,The Lord of the Rings was a huge disappointment.
+67,Anthony Proctor,3,1/24/2025,Gladiator,I found Gladiator to be average. Some good moments though.
+68,Eric Mathews,3,2/4/2025,Gladiator,Gladiator has potential but didn’t quite hit the mark.
+69,Stephen Brown,2,4/18/2025,Gladiator,Poorly executed. Gladiator didn’t meet expectations.
+70,Karen Mack,5,5/15/2025,Inception,Inception was an outstanding film with brilliant performances.
+71,Dustin Peters,5,1/9/2025,Pulp Fiction,Pulp Fiction delivers an unforgettable cinematic experience.
+72,Holly Hernandez,2,5/9/2025,Inception,Inception lacked a compelling story or performance.
+73,Dylan Luna,3,1/6/2025,Inception,Inception has potential but didn’t quite hit the mark.
+74,Candace Nguyen,4,2/18/2025,The Avengers,I absolutely loved The Avengers! A masterpiece!
+75,Angela Young,1,2/12/2025,Titanic,Titanic was a huge disappointment.
+76,Christina Chase,4,3/14/2025,The Shawshank Redemption,The Shawshank Redemption delivers an unforgettable cinematic experience.
+77,Michael Olson,2,5/5/2025,Titanic,Titanic lacked a compelling story or performance.
+78,Vickie Brown,3,4/11/2025,The Dark Knight,"The Dark Knight was okay, not the best but watchable."
+79,Steven Wright,4,1/30/2025,The Godfather,The Godfather was a thrilling and emotional ride.
+80,Heidi Jacobson,3,2/7/2025,Interstellar,It was fine. Interstellar could have been better.
+81,Aaron Grant,2,5/16/2025,Inception,Poorly executed. Inception didn’t meet expectations.
+82,Shane Blankenship,3,5/7/2025,Gladiator,I found Gladiator to be average. Some good moments though.
+83,Daniel Wells,3,5/8/2025,Inception,I found Inception to be average. Some good moments though.
+84,Samantha Patel,3,3/31/2025,The Matrix,"The Matrix was okay, not the best but watchable."
+85,Randy Wiley,2,2/2/2025,Forrest Gump,Poorly executed. Forrest Gump didn’t meet expectations.
+86,David Edwards,3,5/6/2025,Pulp Fiction,Pulp Fiction has potential but didn’t quite hit the mark.
+87,Matthew Carter,3,2/21/2025,Pulp Fiction,"Pulp Fiction was decent, nothing extraordinary."
+88,Sylvia Carter,5,5/10/2025,Interstellar,Interstellar delivers an unforgettable cinematic experience.
+89,Courtney Williams,2,3/29/2025,The Shawshank Redemption,The Shawshank Redemption lacked a compelling story or performance.
+90,Robert Li,3,2/12/2025,The Lord of the Rings,The Lord of the Rings has potential but didn’t quite hit the mark.
+91,Barbara Duncan,3,1/26/2025,The Avengers,"The Avengers was decent, nothing extraordinary."
+92,Thomas Rodriguez,5,4/5/2025,The Godfather,The Godfather delivers an unforgettable cinematic experience.
+93,Victor Owen,2,3/3/2025,Fight Club,Fight Club lacked a compelling story or performance.
+94,Adam Jackson,2,4/24/2025,The Lord of the Rings,"Unfortunately, The Lord of the Rings was boring and slow."
+95,Tina Jones,1,1/14/2025,Interstellar,Interstellar was a huge disappointment.
+96,Sherri Pena,1,1/9/2025,The Dark Knight,I didn’t enjoy The Dark Knight at all.
+97,James Adams,2,2/1/2025,The Matrix,The Matrix was a huge disappointment.
+98,Morgan Lutz,1,3/8/2025,Gladiator,Poorly executed. Gladiator didn’t meet expectations.
+99,Marcus Morris,4,1/11/2025,Fight Club,Fight Club was an outstanding film with brilliant performances.
+100,Barbara Robinson,2,4/23/2025,Inception,Poorly executed. Inception didn’t meet expectations.
