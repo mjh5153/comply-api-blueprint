@@ -43,6 +43,7 @@ build/
 *.dat
 *.json
 *.properties
+!.mvn/wrapper/maven-wrapper.properties
 
 ### System Files ###
 .DS_Store
@@ -53,4 +54,8 @@ Thumbs.db
 *.swo
 *~
 
+# ML/AI reference
+/intelligence
 
+# Local documentation artifacts
+/docs/

@@ -2,6 +2,7 @@ package com.init_spring_bean_mvn.demo.controller;
 
 import com.init_spring_bean_mvn.demo.dto.CompanyDTO;
 import com.init_spring_bean_mvn.demo.service.CompanyService;
+import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,9 +72,13 @@ public class CompanyControllerIntegrationTest {
                 }
                 """;
 
-        MvcResult result = mockMvc.perform(post("/companys/async")
+        MvcResult asyncResult = mockMvc.perform(post("/companys/async")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+
+        MvcResult result = mockMvc.perform(asyncDispatch(asyncResult))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.name").value("Async Test Company"))
@@ -108,9 +113,13 @@ public class CompanyControllerIntegrationTest {
                 ]
                 """;
 
-        MvcResult result = mockMvc.perform(post("/companys/batch/async")
+        MvcResult asyncResult = mockMvc.perform(post("/companys/batch/async")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+
+        MvcResult result = mockMvc.perform(asyncDispatch(asyncResult))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].name").value("Batch Company 1"))
@@ -184,17 +193,17 @@ public class CompanyControllerIntegrationTest {
                 .andExpect(status().isCreated())
                 .andReturn();
 
-        // Extract ID from response (assuming first created has ID 1 in test)
-        // Then update it
+        Number createdId = JsonPath.read(createResult.getResponse().getContentAsString(), "$.id");
+
         String updateJson = """
                 {
-                    "id": 1,
+                    "id": %d,
                     "name": "Updated Name",
                     "email": "updated@test.com"
                 }
-                """;
+                """.formatted(createdId.longValue());
 
-        MvcResult result = mockMvc.perform(put("/companys/1")
+        MvcResult result = mockMvc.perform(put("/companys/{id}", createdId.longValue())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(updateJson))
                 .andExpect(status().isOk())
@@ -210,17 +219,37 @@ public class CompanyControllerIntegrationTest {
      */
     @Test
     public void testUpdateCompanyAsync() throws Exception {
-        String updateJson = """
+        String createJson = """
                 {
-                    "id": 1,
-                    "name": "Async Updated",
-                    "email": "asyncupdate@test.com"
+                    "id": null,
+                    "name": "Async Update Seed",
+                    "email": "asyncupdateseed@test.com"
                 }
                 """;
 
-        MvcResult result = mockMvc.perform(put("/companys/1/async")
+        MvcResult createResult = mockMvc.perform(post("/companys")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(createJson))
+                .andExpect(status().isCreated())
+                .andReturn();
+
+        Number createdId = JsonPath.read(createResult.getResponse().getContentAsString(), "$.id");
+
+        String updateJson = """
+                {
+                    "id": %d,
+                    "name": "Async Updated",
+                    "email": "asyncupdate@test.com"
+                }
+                """.formatted(createdId.longValue());
+
+        MvcResult asyncResult = mockMvc.perform(put("/companys/{id}/async", createdId.longValue())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(updateJson))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+
+        MvcResult result = mockMvc.perform(asyncDispatch(asyncResult))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Async Updated"))
                 .andExpect(jsonPath("$.email").value("asyncupdate@test.com"))
@@ -229,4 +258,3 @@ public class CompanyControllerIntegrationTest {
         System.out.println("Update Async Response: " + result.getResponse().getContentAsString());
     }
 }
-

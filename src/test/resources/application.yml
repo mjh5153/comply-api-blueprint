@@ -1,0 +1,12 @@
+eureka:
+  client:
+    enabled: false
+
+spring:
+  cloud:
+    discovery:
+      enabled: false
+  jpa:
+    open-in-view: false
+  thymeleaf:
+    check-template-location: false

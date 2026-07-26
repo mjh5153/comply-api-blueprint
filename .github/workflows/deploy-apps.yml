@@ -1,0 +1,70 @@
+name: Deploy FC26 Apps to Cloud Run
+
+# Builds & deploys the FC26 services as independent Cloud Run services.
+# Access is per service (FR-002/FR-030): only the public transparency app is
+# unauthenticated; operator/gov/bot9/admin require Cloud Run IAM authenticated
+# invocation. Each service runs as its own least-privilege service account
+# (FR-029). Service-account emails are provisional pending OQ-004 ratification.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'fc26-operator-console/**'
+      - 'fc26-transparency/**'
+      - 'fc26-gov-intel/**'
+      - 'fc26-persuasion-terrain/**'
+      - 'core/**'
+      - 'Dockerfile.web'
+      - 'requirements.txt'
+      - '.github/workflows/deploy-apps.yml'
+
+jobs:
+  deploy:
+    name: Deploy ${{ matrix.service }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { service: fc26-transparency,       app_dir: fc26-transparency,       fc26_app: public,   allow_unauth: true,  sa: fc26-public-sa@mi-defense-2026-1772456176.iam.gserviceaccount.com }
+          - { service: fc26-operator,           app_dir: fc26-operator-console,   fc26_app: operator, allow_unauth: false, sa: fc26-operator-sa@mi-defense-2026-1772456176.iam.gserviceaccount.com }
+          - { service: fc26-gov-intel,          app_dir: fc26-gov-intel,          fc26_app: gov,      allow_unauth: false, sa: fc26-gov-sa@mi-defense-2026-1772456176.iam.gserviceaccount.com }
+          - { service: fc26-persuasion-terrain, app_dir: fc26-persuasion-terrain, fc26_app: bot9,     allow_unauth: false, sa: fc26-bot9-sa@mi-defense-2026-1772456176.iam.gserviceaccount.com }
+          # Admin/operational surface: serves API only (no dedicated SPA), IAM authenticated.
+          - { service: fc26-admin,              app_dir: fc26-operator-console,   fc26_app: admin,    allow_unauth: false, sa: fc26-admin-sa@mi-defense-2026-1772456176.iam.gserviceaccount.com }
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - run: gcloud auth configure-docker gcr.io --quiet
+
+      - name: Build & push image
+        run: |
+          IMAGE="gcr.io/mi-defense-2026-1772456176/${{ matrix.service }}:${{ github.sha }}"
+          docker build -f Dockerfile.web \
+            --build-arg APP_DIR=${{ matrix.app_dir }} \
+            --build-arg FC26_APP=${{ matrix.fc26_app }} \
+            -t "$IMAGE" .
+          docker push "$IMAGE"
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ matrix.service }}
+          region: us-central1
+          image: gcr.io/mi-defense-2026-1772456176/${{ matrix.service }}:${{ github.sha }}
+          # Dedicated least-privilege SA per service (FR-029); keyless auth via ADC.
+          service_account: ${{ matrix.sa }}
+          # Public read-only service is unauthenticated; all others require IAM (FR-002/FR-030).
+          flags: ${{ matrix.allow_unauth && '--allow-unauthenticated' || '--no-allow-unauthenticated' }}
+
+      - name: Show URL
+        run: echo "${{ matrix.service }} → ${{ steps.deploy.outputs.url }}"

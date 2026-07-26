@@ -1,0 +1,51 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Authenticate to Google Cloud
+      id: auth
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Configure Docker Auth
+      run: gcloud auth configure-docker gcr.io --quiet
+
+    - name: Build and Push Docker image
+      run: |
+        IMAGE="gcr.io/mi-defense-2026-1772456176/fc26-orchestrator:${{ github.sha }}"
+        docker build -t $IMAGE .
+        docker push $IMAGE
+
+    - name: Deploy to Cloud Run
+      id: deploy
+      uses: google-github-actions/deploy-cloudrun@v2
+      with:
+        service: fc26-orchestrator
+        region: us-central1
+        image: gcr.io/mi-defense-2026-1772456176/fc26-orchestrator:${{ github.sha }}
+        # Public read-only service: unauthenticated is intentional here (FR-003).
+        # Runs as a dedicated read-only SA (FR-029); provisional pending OQ-004.
+        service_account: fc26-public-sa@mi-defense-2026-1772456176.iam.gserviceaccount.com
+        flags: '--allow-unauthenticated'
+        # No model key: this public service is model-free (analyze moved to the
+        # IAM-authenticated admin service). Secrets, if ever needed, come from
+        # Secret Manager, never plain workflow env (FR-028).
+
+    - name: Show output URL
+      run: echo "Live at ${{ steps.deploy.outputs.url }}"

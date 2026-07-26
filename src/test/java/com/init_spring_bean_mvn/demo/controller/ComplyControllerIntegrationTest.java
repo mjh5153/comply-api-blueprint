@@ -36,9 +36,13 @@ public class ComplyControllerIntegrationTest {
                 }
                 """;
 
-        MvcResult result = mockMvc.perform(post("/api/comply/process")
+        MvcResult asyncResult = mockMvc.perform(post("/api/comply/process")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+
+        MvcResult result = mockMvc.perform(asyncDispatch(asyncResult))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.name").value("Compliance Test Company"))
@@ -73,9 +77,13 @@ public class ComplyControllerIntegrationTest {
                 ]
                 """;
 
-        MvcResult result = mockMvc.perform(post("/api/comply/process/batch")
+        MvcResult asyncResult = mockMvc.perform(post("/api/comply/process/batch")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+
+        MvcResult result = mockMvc.perform(asyncDispatch(asyncResult))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].name").value("Compliance Batch 1"))
@@ -99,10 +107,14 @@ public class ComplyControllerIntegrationTest {
                 }
                 """;
 
-        MvcResult result = mockMvc.perform(post("/api/comply/external-api/concurrent")
+        MvcResult asyncResult = mockMvc.perform(post("/api/comply/external-api/concurrent")
                 .param("apiEndpoint", "http://localhost:8080")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestData))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+
+        MvcResult result = mockMvc.perform(asyncDispatch(asyncResult))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(greaterThan(0))))
                 .andReturn();
@@ -123,9 +135,13 @@ public class ComplyControllerIntegrationTest {
                 ]
                 """;
 
-        MvcResult result = mockMvc.perform(post("/api/comply/reconcile")
+        MvcResult asyncResult = mockMvc.perform(post("/api/comply/reconcile")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+
+        MvcResult result = mockMvc.perform(asyncDispatch(asyncResult))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", containsString("Reconciliation complete")))
                 .andReturn();
@@ -133,4 +149,3 @@ public class ComplyControllerIntegrationTest {
         System.out.println("Reconciliation Response: " + result.getResponse().getContentAsString());
     }
 }
-

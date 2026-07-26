@@ -2,8 +2,11 @@ package com.init_spring_bean_mvn.demo;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.FilterType;
+import com.init_spring_bean_mvn.demo.emsbackend.EmsBackendApplication;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -33,6 +36,7 @@ import static org.springframework.boot.SpringApplication.*;
 // most common: webmvc, jackson-json, validation-api, tomcat
 
 @SpringBootApplication // combo of enableautoconfiguration and @ComponentScan - specifiy package for component scanning and @SpringBootConfiguration annotation
+@ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = EmsBackendApplication.class))
 @EnableDiscoveryClient // Enable Eureka service discovery for this application
 public class DemoApplication {
 

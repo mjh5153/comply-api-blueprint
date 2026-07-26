@@ -30,7 +30,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud.version>2024.0.0</spring-cloud.version>
+		<spring-cloud.version>2025.0.3</spring-cloud.version>
 	</properties>
     <!-- spring boot starters managed by parent -->
 	<dependencies>
@@ -54,7 +54,6 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
 		<dependency>
@@ -94,11 +93,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <mainClass>com.init_spring_bean_mvn.demo.DemoApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.42</version>
                         </exclude>
                     </excludes>
                 </configuration>
@@ -107,8 +106,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>25</source>
-                    <target>25</target>
+                    <release>${java.version}</release>
                 </configuration>
             </plugin>
         </plugins>
