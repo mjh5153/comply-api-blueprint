@@ -1,0 +1,386 @@
+version: "2026.1"
+rules:
+  - id: GDPR.PERSONAL_DATA.001
+    version: "1"
+    framework: GDPR
+    framework_version: "Regulation (EU) 2016/679"
+    framework_type: law
+    jurisdictions: [EU]
+    status: active
+    effective_from: 2018-05-25
+    when:
+      any_data_categories:
+        - contact_information
+        - telephone_number
+        - person_name
+        - postal_address
+        - online_identifier
+        - device_identifier
+        - geolocation
+        - date_of_birth
+        - government_identifier
+        - social_security_number
+        - account_identifier
+        - payment_card_data
+        - financial_data
+        - health_data
+        - biometric_data
+        - employment_data
+        - authentication_credentials
+        - behavioral_data
+        - free_form_text
+        - childrens_data
+    then:
+      applicability: likely
+      risk: medium
+      references:
+        - reference: Article 5
+          title: Principles relating to processing of personal data
+          reason: Personal data processing should address purpose limitation, data minimisation, and storage limitation.
+        - reference: Article 6
+          title: Lawfulness of processing
+          reason: A lawful basis is required for the declared processing purpose.
+      recommended_controls:
+        - control: document_lawful_basis
+          priority: high
+          type: governance
+          reason: Record the legal basis and purpose for the declared processing.
+        - control: apply_data_minimization
+          priority: high
+          type: preventive
+          reason: Retain only fields necessary for the declared purpose.
+        - control: define_retention_schedule
+          priority: medium
+          type: governance
+          reason: Tie retention to the purpose and review it periodically.
+    rationale: Personal data indicators in an EU jurisdiction warrant a GDPR review without establishing a final legal determination.
+    source:
+      authority: European Union
+      citation: Regulation (EU) 2016/679 (GDPR)
+      url: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+
+  - id: GDPR.SECURITY.001
+    version: "1"
+    framework: GDPR
+    framework_version: "Regulation (EU) 2016/679"
+    framework_type: law
+    jurisdictions: [EU]
+    status: active
+    effective_from: 2018-05-25
+    when:
+      has_sensitive_data: true
+    then:
+      applicability: likely
+      risk: high
+      references:
+        - reference: Article 32
+          title: Security of processing
+          reason: Sensitive personal-data indicators warrant review of risk-appropriate technical and organisational measures.
+      recommended_controls:
+        - control: encrypt_sensitive_data
+          priority: high
+          type: preventive
+          reason: Protect sensitive data at rest and in transit.
+        - control: enforce_role_based_access
+          priority: high
+          type: preventive
+          reason: Restrict access to sensitive fields by role and business need.
+        - control: log_sensitive_data_access
+          priority: medium
+          type: detective
+          reason: Create an auditable record of access to sensitive fields.
+    rationale: Sensitive data indicators increase the need for documented security measures in an EU context.
+    source:
+      authority: European Union
+      citation: Regulation (EU) 2016/679, Article 32
+      url: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+
+  - id: GDPR.RETENTION.001
+    version: "1"
+    framework: GDPR
+    framework_version: "Regulation (EU) 2016/679"
+    framework_type: law
+    jurisdictions: [EU]
+    status: active
+    effective_from: 2018-05-25
+    when:
+      retention_days_greater_than: 365
+    then:
+      applicability: possible
+      risk: medium
+      references:
+        - reference: Article 5(1)(e)
+          title: Storage limitation
+          reason: Retention longer than one year should have a documented purpose and review process.
+      recommended_controls:
+        - control: define_retention_schedule
+          priority: high
+          type: governance
+          reason: Document why the declared retention period is necessary and when deletion occurs.
+    rationale: A long declared retention period is a review signal, not proof of unlawful storage.
+    source:
+      authority: European Union
+      citation: Regulation (EU) 2016/679, Article 5(1)(e)
+      url: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+
+  - id: CCPA_CPRA.PERSONAL_INFORMATION.001
+    version: "1"
+    framework: CCPA/CPRA
+    framework_version: "California Consumer Privacy Act as amended"
+    framework_type: law
+    jurisdictions: [US-CA]
+    status: active
+    effective_from: 2023-01-01
+    when:
+      any_data_categories:
+        - contact_information
+        - telephone_number
+        - person_name
+        - postal_address
+        - online_identifier
+        - device_identifier
+        - geolocation
+        - financial_data
+        - behavioral_data
+        - employment_data
+        - free_form_text
+    then:
+      applicability: likely
+      risk: medium
+      references:
+        - reference: Cal. Civ. Code §1798.100
+          title: Right to know and notice of collection
+          reason: Personal-information fields warrant review of collection notice and purpose disclosures.
+        - reference: Cal. Civ. Code §1798.105
+          title: Right to delete
+          reason: The data model should support retention and deletion workflow review.
+      recommended_controls:
+        - control: provide_collection_notice
+          priority: high
+          type: governance
+          reason: Document categories collected and the purposes for collection.
+        - control: honor_consumer_rights
+          priority: medium
+          type: corrective
+          reason: Establish a process for applicable access and deletion requests.
+        - control: define_retention_schedule
+          priority: medium
+          type: governance
+          reason: Avoid retaining personal information longer than reasonably necessary.
+    rationale: California personal-information indicators justify a CCPA/CPRA review; thresholds and business facts are not provided by schema metadata.
+    source:
+      authority: State of California
+      citation: California Consumer Privacy Act, California Civil Code §§1798.100-1798.199
+      url: https://oag.ca.gov/privacy/ccpa
+
+  - id: HIPAA.HEALTH_DATA.001
+    version: "1"
+    framework: HIPAA
+    framework_version: "HIPAA Privacy and Security Rules"
+    framework_type: regulation
+    jurisdictions: [US]
+    status: active
+    effective_from: 2013-01-25
+    when:
+      has_health_data: true
+    then:
+      applicability: possible
+      risk: high
+      missing_information:
+        - Confirm whether the organization is a covered entity or business associate.
+        - Confirm whether the fields are protected health information handled in a covered transaction.
+      references:
+        - reference: 45 CFR Part 164, Subparts C and E
+          title: HIPAA Security and Privacy Rules
+          reason: Health-data indicators warrant review of covered-entity status, permitted uses, access controls, and safeguards.
+      recommended_controls:
+        - control: enforce_role_based_access
+          priority: high
+          type: preventive
+          reason: Restrict health-data access to authorized workforce members.
+        - control: encrypt_sensitive_data
+          priority: high
+          type: preventive
+          reason: Protect health data at rest and in transit.
+        - control: document_entity_status
+          priority: high
+          type: governance
+          reason: Record the covered-entity or business-associate analysis before making a HIPAA determination.
+    rationale: Health-data indicators can suggest HIPAA relevance, but entity status and transaction context are essential.
+    source:
+      authority: U.S. Department of Health and Human Services
+      citation: HIPAA Privacy, Security, and Breach Notification Rules
+      url: https://www.hhs.gov/hipaa/for-professionals/index.html
+
+  - id: PCI_DSS.PAYMENT_CARD.001
+    version: "1"
+    framework: PCI DSS
+    framework_version: "PCI DSS v4.x"
+    framework_type: industry_standard
+    jurisdictions: [GLOBAL]
+    status: active
+    effective_from: 2024-04-01
+    when:
+      any_data_categories: [payment_card_data]
+      any_processing_activities: [collection, storage, transmission, processing]
+    then:
+      applicability: likely
+      risk: high
+      references:
+        - reference: Requirement 3
+          title: Protect stored account data
+          reason: Payment-card indicators warrant review of retention, masking, truncation, and protection of stored account data.
+        - reference: Requirement 4
+          title: Protect cardholder data with strong cryptography during transmission
+          reason: Transmission activities warrant review of strong cryptography and secure protocols.
+      recommended_controls:
+        - control: tokenize_payment_card_data
+          priority: critical
+          type: preventive
+          reason: Reduce the need to retain raw payment-card values.
+        - control: restrict_payment_data_retention
+          priority: high
+          type: governance
+          reason: Retain card data only for a documented business and compliance need.
+        - control: encrypt_sensitive_data
+          priority: high
+          type: preventive
+          reason: Protect cardholder data at rest and in transit.
+    rationale: Payment-card data and a relevant processing activity are strong PCI DSS scope indicators; the service does not determine the cardholder-data environment.
+    source:
+      authority: PCI Security Standards Council
+      citation: Payment Card Industry Data Security Standard v4.x
+      url: https://www.pcisecuritystandards.org/standards/pci-dss/
+
+  - id: EU_AI_ACT.AUTOMATED_DECISION.001
+    version: "1"
+    framework: EU AI Act
+    framework_version: "Regulation (EU) 2024/1689"
+    framework_type: regulation
+    jurisdictions: [EU]
+    status: active
+    effective_from: 2024-08-01
+    when:
+      automated_decision_making: true
+    then:
+      applicability: possible
+      risk: medium
+      missing_information:
+        - Describe the AI system function, intended purpose, users, and affected persons.
+        - Assess the system against the applicable EU AI Act risk categories.
+      references:
+        - reference: Article 6
+          title: Classification rules for high-risk AI systems
+          reason: Automated decision-making metadata warrants a documented system-level risk assessment.
+      recommended_controls:
+        - control: document_ai_system_purpose
+          priority: high
+          type: governance
+          reason: Record intended purpose, users, affected persons, and decision impact.
+        - control: maintain_ai_risk_assessment
+          priority: high
+          type: governance
+          reason: Keep a system-level AI risk assessment separate from dataset classification.
+    rationale: Dataset metadata alone cannot establish an EU AI Act risk class; system context is required.
+    source:
+      authority: European Union
+      citation: Regulation (EU) 2024/1689 (EU AI Act)
+      url: https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+
+  - id: EU_AI_ACT.INFERENCE.001
+    version: "1"
+    framework: EU AI Act
+    framework_version: "Regulation (EU) 2024/1689"
+    framework_type: regulation
+    jurisdictions: [EU]
+    status: active
+    effective_from: 2024-08-01
+    when:
+      used_for_inference: true
+    then:
+      applicability: possible
+      risk: medium
+      missing_information:
+        - Describe the model, intended purpose, affected persons, and output impact.
+      references:
+        - reference: Article 9
+          title: Risk management system
+          reason: Inference use warrants review of documented AI risk management and data governance.
+      recommended_controls:
+        - control: document_ai_data_governance
+          priority: medium
+          type: governance
+          reason: Document data provenance, quality, limitations, and intended inference use.
+    rationale: Inference metadata is a governance signal and is insufficient by itself to determine legal risk class.
+    source:
+      authority: European Union
+      citation: Regulation (EU) 2024/1689 (EU AI Act)
+      url: https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+
+  - id: EU_AI_ACT.TRAINING.001
+    version: "1"
+    framework: EU AI Act
+    framework_version: "Regulation (EU) 2024/1689"
+    framework_type: regulation
+    jurisdictions: [EU]
+    status: active
+    effective_from: 2024-08-01
+    when:
+      used_for_training: true
+    then:
+      applicability: possible
+      risk: medium
+      missing_information:
+        - Describe the model, intended purpose, training data governance, and affected persons.
+      references:
+        - reference: Article 10
+          title: Data and data governance
+          reason: Training-data use warrants review of data governance, quality, provenance, and bias controls.
+      recommended_controls:
+        - control: document_ai_data_governance
+          priority: high
+          type: governance
+          reason: Document training-data provenance, quality, limitations, and governance decisions.
+        - control: maintain_ai_risk_assessment
+          priority: medium
+          type: governance
+          reason: Maintain a system-level risk assessment for the intended AI use.
+    rationale: Training metadata is a governance signal and is insufficient by itself to determine legal risk class.
+    source:
+      authority: European Union
+      citation: Regulation (EU) 2024/1689 (EU AI Act)
+      url: https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+
+  - id: ISO_42001.AI_GOVERNANCE.001
+    version: "1"
+    framework: ISO/IEC 42001
+    framework_version: "ISO/IEC 42001:2023"
+    framework_type: management_system_standard
+    jurisdictions: [GLOBAL]
+    status: active
+    effective_from: 2023-12-18
+    when:
+      any_processing_purposes: [model_training, ai_training, model_inference]
+    then:
+      applicability: possible
+      risk: medium
+      missing_information:
+        - Confirm whether an AI management system or certification objective is in scope.
+      references:
+        - reference: Clause 6
+          title: Planning
+          reason: AI training or inference purpose warrants documented AI risks, objectives, and treatment plans.
+      recommended_controls:
+        - control: document_ai_data_governance
+          priority: medium
+          type: governance
+          reason: Document data governance, risk treatment, and accountability for AI activities.
+        - control: maintain_ai_risk_assessment
+          priority: medium
+          type: governance
+          reason: Maintain an auditable AI risk assessment and review cadence.
+    rationale: ISO/IEC 42001 is a management-system standard; a dataset signal does not imply certification or conformity.
+    source:
+      authority: International Organization for Standardization
+      citation: ISO/IEC 42001:2023
+      url: https://www.iso.org/standard/81230.html

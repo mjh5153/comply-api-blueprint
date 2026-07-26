@@ -1,0 +1,15 @@
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: INFO
+    org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor: INFO
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: INFO
+    org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor: INFO
+    org.hibernate.SQL: INFO
+    org.hibernate.orm.jdbc.bind: WARN
+
+spring:
+  http:
+    log-request-details: false
+  codec:
+    log-request-details: false
