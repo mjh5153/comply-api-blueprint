@@ -1,0 +1,17 @@
+
+# One-click deploy: push this repo to GitHub, then in the Render dashboard
+# click "New +" -> "Blueprint" and point it at this repository.
+# Render will detect this file and provision the service automatically.
+services:
+  - type: web
+    name: comply-api-blueprint
+    runtime: docker
+    plan: free                    # 512 MB RAM, sleeps after 15 min idle
+    region: oregon
+    branch: main
+    healthCheckPath: /companys    # returns 200 with an empty JSON array
+    envVars:
+      # Constrain the JVM to fit in Render Free's 512 MB memory limit.
+      - key: JAVA_TOOL_OPTIONS
+        value: "-Xmx400m -Xss512k -XX:MaxMetaspaceSize=128m"
+
