@@ -32,18 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
-### Audio/Media Files ###
-*.mp3
-*.wav
-*.flac
-*.m4a
-*.aac
-
-### Data Files ###
-*.dat
-*.json
-*.properties
-
 ### System Files ###
 .DS_Store
 Thumbs.db
@@ -53,4 +41,10 @@ Thumbs.db
 *.swo
 *~
 
+### App runtime output ###
+*.log
+orderTracking.json
 
+### Secrets ###
+.env
+.env.local
