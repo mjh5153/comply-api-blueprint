@@ -2,29 +2,26 @@ package com.init_spring_bean_mvn.demo.entity;
 
 import jakarta.persistence.*;
 
-@Entity // marks class as jpa entity and maps to database table
+import java.util.Objects;
+
+/**
+ * JPA entity representing a company record persisted to the {@code companys} table.
+ */
+@Entity
 @Table(name = "companys")
 public class Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // configures primary key for id field and increments
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name", nullable = false)
-    private String name; //if two words like firstName jpa will make first_name
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Column(unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
-    // Default no-argument constructor (required by JPA/Hibernate)
+    /** No-arg constructor required by JPA/Hibernate. */
     public Company() {
     }
 
@@ -34,21 +31,24 @@ public class Company {
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Company that)) return false;
+        return Objects.equals(id, that.id);
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
 }
