@@ -9,7 +9,7 @@ services:
     plan: free                    # 512 MB RAM, sleeps after 15 min idle
     region: oregon
     branch: main
-    healthCheckPath: /companys    # returns 200 with an empty JSON array
+    healthCheckPath: /companies   # returns 200 with an empty JSON array
     envVars:
       # Constrain the JVM to fit in Render Free's 512 MB memory limit.
       - key: JAVA_TOOL_OPTIONS

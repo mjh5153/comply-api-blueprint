@@ -28,7 +28,7 @@
 
 ### Project Version
 - **Current**: 0.0.1-SNAPSHOT
-- **Group ID**: com.init-spring-bean-mvn
+- **Group ID**: io.github.mjh5153
 - **Artifact ID**: demo
 
 ## 📁 Project Structure
@@ -37,7 +37,7 @@
 demo/
 ├── src/
 │   ├── main/
-│   │   ├── java/com/init_spring_bean_mvn/demo/
+│   │   ├── java/io/github/mjh5153/complyapi/
 │   │   │   ├── controller/              # REST API endpoints (CompanyController, ComplyController)
 │   │   │   ├── service/                 # Business logic interfaces (CompanyService, AsyncHttpService, ComplyApiService)
 │   │   │   ├── service/impl/            # Service implementations
@@ -71,7 +71,7 @@ demo/
 **Example Pattern:**
 ```java
 @RestController
-@RequestMapping("companys")
+@RequestMapping("companies")
 public class CompanyController {
     private final CompanyService _companyService;
     
@@ -351,7 +351,7 @@ public class CompanyServiceImpl implements CompanyService {
  * All async operations are non-blocking and thread-safe
  */
 @RestController
-@RequestMapping("companys")
+@RequestMapping("companies")
 public class CompanyController {
     
     /**
@@ -475,7 +475,7 @@ java -jar target/demo-0.0.1-SNAPSHOT.jar
 3. **ComplyApiService** - COMPLY API blueprint operations
 
 ### Controllers
-1. **CompanyController** - Company REST endpoints (/companys)
+1. **CompanyController** - Company REST endpoints (/companies)
 2. **ComplyController** - COMPLY API endpoints (/api/comply)
 
 ### Database

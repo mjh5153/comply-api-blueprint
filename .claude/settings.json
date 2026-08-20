@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run test)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run lint)",
+      "Bash(unzip -l *)",
+      "Bash(npm audit)",
+      "Bash(shasum *)",
+      "Bash(defaults read *)",
+      "Bash(npm view *)",
+      "Bash(brew list *)"
+    ]
+  }
+}
