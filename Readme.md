@@ -54,7 +54,7 @@ the request thread is released while external work is in flight.
   → repository → JPA entity → DTO record, with constructor injection throughout.
 - Error mapping: `ResourceNotFoundException` → `404`; `.exceptionally(...)` on
   async chains → `500`.
-- OpenAPI 3 generated from the controllers, served at `/swagger-ui.html`.
+- OpenAPI 3 generated from the controllers, served at `/swagger-ui/index.html` (with `/swagger-ui.html` redirect).
 
 **What the architecture demonstrates rather than delivers:** the `/api/comply`
 endpoints show *where* compliance orchestration would attach — a request enters,
