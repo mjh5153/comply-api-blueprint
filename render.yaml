@@ -9,9 +9,34 @@ services:
     plan: free                    # 512 MB RAM, sleeps after 15 min idle
     region: oregon
     branch: main
-    healthCheckPath: /companies   # returns 200 with an empty JSON array
+    healthCheckPath: /companies   # returns 200 with a JSON array of companies
     envVars:
       # Constrain the JVM to fit in Render Free's 512 MB memory limit.
       - key: JAVA_TOOL_OPTIONS
         value: "-Xmx400m -Xss512k -XX:MaxMetaspaceSize=128m"
+      # Username and password are injected from the managed Postgres below.
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: comply-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: comply-db
+          property: password
+      # Render only exposes postgres:// connection strings, which Spring cannot
+      # parse, so this one cannot be wired with fromDatabase. Set it by hand in
+      # the dashboard, rewriting the database's *internal* URL as JDBC:
+      #   postgres://comply:secret@dpg-xxxx/complydb   <- what Render shows
+      #   jdbc:postgresql://dpg-xxxx/complydb          <- what you paste here
+      # WARNING: until this is set, application.properties falls back to
+      # in-memory H2 and the service will look healthy while losing all data
+      # on every restart.
+      - key: SPRING_DATASOURCE_URL
+        sync: false
 
+databases:
+  - name: comply-db
+    plan: free              # free Postgres is deleted 30 days after creation
+    region: oregon          # must match the service region
+    databaseName: complydb
+    user: comply
