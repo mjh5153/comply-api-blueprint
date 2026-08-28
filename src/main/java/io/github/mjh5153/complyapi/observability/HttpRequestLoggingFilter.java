@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerMapping;
 
 /**
  * Emits one structured application log entry for each completed HTTP request.
@@ -37,21 +38,28 @@ public class HttpRequestLoggingFilter extends OncePerRequestFilter {
 
         String requestId = resolveRequestId(request.getHeader(REQUEST_ID_HEADER));
         long startedAtNanos = System.nanoTime();
+        boolean unhandledException = false;
 
         response.setHeader(REQUEST_ID_HEADER, requestId);
         MDC.put(MDC_REQUEST_ID_KEY, requestId);
 
         try {
             filterChain.doFilter(request, response);
+        } catch (IOException | ServletException | RuntimeException ex) {
+            unhandledException = true;
+            throw ex;
         } finally {
             long durationMs = (System.nanoTime() - startedAtNanos) / 1_000_000;
+            int status = unhandledException && response.getStatus() < 400
+                    ? HttpServletResponse.SC_INTERNAL_SERVER_ERROR
+                    : response.getStatus();
 
             log.info(
                     "http_request requestId={} method={} path={} status={} durationMs={}",
                     requestId,
                     request.getMethod(),
-                    request.getRequestURI(),
-                    response.getStatus(),
+                    resolvePath(request),
+                    status,
                     durationMs);
 
             MDC.remove(MDC_REQUEST_ID_KEY);
@@ -63,5 +71,10 @@ public class HttpRequestLoggingFilter extends OncePerRequestFilter {
             return candidate;
         }
         return UUID.randomUUID().toString();
+    }
+
+    private String resolvePath(HttpServletRequest request) {
+        Object matchedPattern = request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
+        return matchedPattern instanceof String pattern ? pattern : request.getRequestURI();
     }
 }
