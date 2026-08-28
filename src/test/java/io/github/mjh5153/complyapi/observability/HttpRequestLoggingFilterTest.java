@@ -1,6 +1,7 @@
 package io.github.mjh5153.complyapi.observability;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.web.servlet.HandlerMapping;
 
 class HttpRequestLoggingFilterTest {
 
@@ -53,6 +55,19 @@ class HttpRequestLoggingFilterTest {
     }
 
     @Test
+    void prefersMatchedRouteTemplateOverHighCardinalityUri() throws Exception {
+        MockHttpServletRequest request = new MockHttpServletRequest("GET", "/companies/12345");
+        request.setAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE, "/companies/{id}");
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        filter.doFilter(request, response, successfulChain());
+
+        assertThat(singleLogMessage())
+                .contains("path=/companies/{id}")
+                .doesNotContain("12345");
+    }
+
+    @Test
     void logsFailedResponseStatus() throws Exception {
         MockHttpServletRequest request = new MockHttpServletRequest("GET", "/companies/999");
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -64,7 +79,24 @@ class HttpRequestLoggingFilterTest {
 
         assertThat(singleLogMessage())
                 .contains("method=GET")
-                .contains("path=/companies/999")
+                .contains("status=500");
+    }
+
+    @Test
+    void recordsUnhandledExceptionAsServerFailureWhenResponseStatusIsStillSuccessful() {
+        MockHttpServletRequest request = new MockHttpServletRequest("GET", "/companies");
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        FilterChain throwingChain = (servletRequest, servletResponse) -> {
+            throw new IllegalStateException("boom");
+        };
+
+        assertThatThrownBy(() -> filter.doFilter(request, response, throwingChain))
+                .isInstanceOf(IllegalStateException.class);
+
+        assertThat(singleLogMessage())
+                .contains("method=GET")
+                .contains("path=/companies")
                 .contains("status=500");
     }
 
