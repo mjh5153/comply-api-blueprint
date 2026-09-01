@@ -37,6 +37,12 @@ This repository is a blueprint for the API layer that sits in front of that
 problem: how the controllers, services, and thread pools should be arranged so
 the request thread is released while external work is in flight.
 
+## Target domain model
+
+The planned dataset-to-law model keeps company-owned data separate from the
+versioned compliance rule catalog and uses `RuleEvaluation` as the traceable
+evidence object. See the [Mermaid domain diagrams](docs/domain-model.md).
+
 ## What this prototype demonstrates
 
 **What is implemented and verified** (exercised by the test suite and by live
